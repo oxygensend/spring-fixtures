@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "fixtures.trigger-event",
+      "defaultValue": "CONTEXT_REFRESHED"
+    }
+  ]
+}
