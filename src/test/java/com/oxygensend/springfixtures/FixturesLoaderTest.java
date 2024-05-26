@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,12 +30,14 @@ class FixturesLoaderTest {
     void setUp() {
         when(dictionaryFixture.type()).thenReturn(FixtureType.DICTIONARY);
         when(businessObjectFixture.type()).thenReturn(FixtureType.BUSINESS_OBJECT);
+        when(dictionaryFixture.isEnabled()).thenReturn(true);
+        when(businessObjectFixture.isEnabled()).thenReturn(true);
 
         fixtureLoader = new FixturesLoader(List.of(businessObjectFixture, dictionaryFixture));
     }
 
     @Test
-    void testLoad() {
+    void testLoadOrder() {
 
         fixtureLoader.load();
         InOrder inOrder = inOrder(dictionaryFixture, businessObjectFixture);
@@ -45,5 +48,6 @@ class FixturesLoaderTest {
         verify(businessObjectFixture, times(1)).load();
 
     }
+
 
 }
