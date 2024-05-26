@@ -9,6 +9,11 @@ public interface Fixture {
         return FixtureType.BUSINESS_OBJECT;
     }
 
+    default int order() {
+        return Integer.MAX_VALUE;
+    }
+
+
     /**
      * Loads fixtures to the database on startup
      */

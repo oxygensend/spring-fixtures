@@ -6,12 +6,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
+@ConditionalOnProperty(name = "fixtures.enabled", havingValue = "true")
 @EnableConfigurationProperties(FixturesProperties.class)
 @AutoConfiguration
 public class FixturesAutoConfiguration {
 
     @Bean
-    @ConditionalOnProperty(name = "fixtures.enabled", havingValue = "true")
     FixturesLoader fixturesLoader(List<Fixture> fixtures) {
         return new FixturesLoader(fixtures);
     }

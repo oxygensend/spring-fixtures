@@ -32,9 +32,14 @@ final class FixturesLoader {
 
     void load() {
         fixtures.stream()
-                .sorted(Comparator.comparingInt(fixture -> fixture.type().priority()))
+                .sorted(createFixtureComparatorByTypeAndOrder())
                 .filter(Fixture::isEnabled)
                 .forEach(this::load);
+    }
+
+    private Comparator<Fixture> createFixtureComparatorByTypeAndOrder() {
+        return Comparator.comparingInt((Fixture fixture) -> fixture.type().priority())
+                         .thenComparingInt(Fixture::order);
     }
 
     void load(Fixture fixture) {
