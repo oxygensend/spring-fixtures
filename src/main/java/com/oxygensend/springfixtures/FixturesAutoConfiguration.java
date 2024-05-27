@@ -27,4 +27,9 @@ public class FixturesAutoConfiguration {
     FixturesContextRefreshedListener contextRefreshedListener(FixturesLoader loader) {
         return new FixturesContextRefreshedListener(loader);
     }
+
+    @Bean
+    FixturesFakerProvider fixturesFakerProvider(FixturesProperties properties) {
+        return new FixturesFakerProvider(properties, 100);
+    }
 }
