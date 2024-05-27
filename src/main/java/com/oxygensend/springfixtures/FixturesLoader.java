@@ -45,7 +45,7 @@ final class FixturesLoader {
     void load(Fixture fixture) {
         LOGGER.info("Loading fixtures {}", fixture.collectionName());
         long duration = LoadingDuration.catchDuration(fixture::load);
-        LOGGER.info("Loading fixtures {} finished. It took {} to load all fixtures", fixture.collectionName(), duration);
+        LOGGER.info("Loading fixtures {} finished in time {} ms", fixture.collectionName(), duration);
     }
 
 }
